@@ -1,0 +1,57 @@
+{
+  "name": "leon-music",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
+    "format": "prettier --write src/"
+  },
+  "dependencies": {
+    "@better-scroll/core": "^2.5.1",
+    "@better-scroll/observe-dom": "^2.5.1",
+    "@better-scroll/slide": "^2.5.1",
+    "@headlessui/vue": "^1.7.19",
+    "@heroicons/vue": "^2.1.3",
+    "@jamescoyle/vue-icon": "^0.1.2",
+    "@mdi/js": "^7.4.47",
+    "axios": "^1.6.8",
+    "create-keyframe-animation": "^0.1.0",
+    "jian-pinyin": "^0.2.3",
+    "js-pinyin": "^0.2.5",
+    "lyric-parser": "^1.0.1",
+    "pinia": "^2.1.7",
+    "pinyin": "^4.0.0-alpha.0",
+    "segmentit": "^2.0.3",
+    "throttle-debounce": "^5.0.0",
+    "typescript": "^5.4.3",
+    "vant": "^4.8.7",
+    "vue": "^3.3.10",
+    "vue-router": "^4.2.5",
+    "vuetify": "^3.5.11",
+    "vuex": "^4.1.0"
+  },
+  "devDependencies": {
+    "@rushstack/eslint-patch": "^1.3.3",
+    "@vitejs/plugin-vue": "^4.5.1",
+    "@vitejs/plugin-vue-jsx": "^3.1.0",
+    "@vue/eslint-config-prettier": "^8.0.0",
+    "autoprefixer": "^10.4.19",
+    "eslint": "^8.49.0",
+    "eslint-plugin-vue": "^9.17.0",
+    "prettier": "^3.0.3",
+    "sass": "^1.72.0",
+    "sass-loader": "^14.1.1",
+    "tailwindcss": "^3.4.1",
+    "vite": "^5.0.5",
+    "vue-cli-plugin-vuetify": "~2.5.8"
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  }
+}
