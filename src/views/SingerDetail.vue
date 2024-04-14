@@ -25,6 +25,9 @@
             @click="handleSongClick(song, index)"
           >
             {{ song.name }}
+            <div class="ar">
+              {{ name }}
+            </div>
           </div>
         </template>
       </div>
@@ -267,6 +270,9 @@ onMounted(async () => {
     font-size: 18px;
     color: #000000;
     cursor: pointer;
+    .ar {
+      font-size: 12px;
+    }
   }
 
   .song-item:hover {

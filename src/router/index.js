@@ -25,7 +25,8 @@ const router = createRouter({
     },
     { name: 'singerdetail', path: '/singer/:id', component: () => import('../views/SingerDetail.vue') },
     { name: 'ratedetail', path: '/rate/:id', component: () => import('../views/RateDetail.vue') },
-    { name: 'login', path: '/login', component: () => import('../views/LoginView.vue') }
+    { name: 'login', path: '/login', component: () => import('../views/LoginView.vue') },
+    { name: 'playlist', path: '/playlist/:id', component: () => import('../views/PlayList.vue') }
     // {
     //   path: '/about',
     //   name: 'about',

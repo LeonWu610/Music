@@ -88,6 +88,7 @@ export async function fetchSongUrl (id) {
 export const fetchSongs = async (id) => {
   const songDetail = []
   await fetchSingerDetail(id).then((res) => {
+    console.log(res);
     let songurl = ''
     for (const song of res.data.songs) {
       fetchSongUrl(song.id).then((res) => {

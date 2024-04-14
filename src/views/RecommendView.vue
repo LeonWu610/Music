@@ -5,15 +5,22 @@ import { useSongStore } from '@/stores/song.js'
 import { fetchLyric } from '@/api/api'
 import { fetchSongUrl } from '@/api/api'
 import ErrorView from '@/components/basic/ErrorView.vue'
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import { Pagination, Autoplay } from 'swiper/modules'
+import 'swiper/css/pagination'
+import 'swiper/css'
+import { useRouter } from 'vue-router'
 
 const banners = ref()
 const playlistInfo = ref()
 const albumInfo = ref()
 const currentSong = useSongStore()
 const showAlert = ref(false)
+const modules = [Pagination, Autoplay]
+const router = useRouter()
 
-const handlePlaylistClick = () => {
-  showAlert.value = true
+const handlePlaylistClick = (id) => {
+  router.push({ path: `/playlist/${id}` })
 }
 
 const closeError = () => {
@@ -21,7 +28,7 @@ const closeError = () => {
 }
 
 const handleSongClick = async (album) => {
-  console.log(album);
+  console.log(album)
   await fetchSongUrl(album.id).then((res) => {
     if (res.data.data[0].url === null) {
       showAlert.value = true
@@ -55,19 +62,33 @@ fetchNewSong().then((res) => {
 
 <template>
   <div>
-    <div class="m-2">
-      <v-carousel height="160" :show-arrows="false" cycle hide-delimiter-background>
-        <v-progress-circular color="grey-lighten-4" indeterminate></v-progress-circular>
-        <v-carousel-item rounded-lg v-for="(banner, i) in banners" :key="i">
-          <img :src="banner.imageUrl" class="rounded-lg" />
-        </v-carousel-item>
-      </v-carousel>
-    </div>
+    <swiper
+      :pagination="{
+        clickable: true,
+        dynamicBullets: true
+      }"
+      :modules="modules"
+      :loop="true"
+      :autoplay="{
+        delay: 2500,
+        disableOnInteraction: false
+      }"
+      class="mx-3 rounded-lg"
+    >
+      <swiper-slide v-for="(slide, index) in banners" :key="index">
+        <img :src="slide.imageUrl" />
+      </swiper-slide>
+    </swiper>
 
     <div>
       <div class="m-3 text-left text-amber-950 text-sm font-semibold">甄选歌单</div>
-      <div class="overflow-x-scroll flex ml-3" @click="handlePlaylistClick()">
-        <div class="flex flex-col" v-for="(playlist, index) in playlistInfo" :key="index">
+      <div class="overflow-x-scroll flex ml-3">
+        <div
+          class="flex flex-col"
+          v-for="(playlist, index) in playlistInfo"
+          :key="index"
+          @click="handlePlaylistClick(playlist.id)"
+        >
           <div class="mr-5">
             <v-img
               class="rounded-lg"
@@ -133,3 +154,28 @@ fetchNewSong().then((res) => {
     </div>
   </div>
 </template>
+
+<style>
+.swiper {
+  width: 100%;
+  height: 152px;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+</style>
